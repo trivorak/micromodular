@@ -11,9 +11,9 @@ void setup() {
 }
 
 void loop() {
-  int stepValue = analogRead(seqSteps[activeStep]);
-  tone(soundOut,map(stepValue,0,1024,100,10000));
-  Serial.println(stepValue);
-  stepValue = (stepValue + 1) % 8;
-  delay(map(analogRead(tempoPot),0,1024,2000,240));
+  int stepValue = analogRead(seqSteps[activeStep]);         // Read current step
+  tone(soundOut,map(stepValue, 0, 1024, minFreq,maxFreq));  // Set tone of speaker based on reading mapped
+  Serial.println(stepValue);                                // Print for Debuggin purposes
+  stepValue = (stepValue + 1) % 8;                          // Add 1 w/ modulo of 8
+  delay(map(analogRead(tempoPot),0,1024,2000,240));         // Delay timer, Tempo
 }
